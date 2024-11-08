@@ -1,5 +1,5 @@
 <main class="main">
-  <div class="flex w-full justify-center p-5">
+  <div class="flex flex-col w-full items-center gap-5 p-5">
     <div class="w-28">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -46,6 +46,10 @@
           <clipPath id="a"><path fill="#fff" d="M0 0h982v239H0z" /></clipPath>
         </defs>
       </svg>
+    </div>
+
+    <div>
+      {{ store.todos() | json }}
     </div>
   </div>
 </main>

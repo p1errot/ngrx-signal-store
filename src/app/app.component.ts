@@ -1,13 +1,24 @@
-import { Component } from '@angular/core';
+import { JsonPipe } from '@angular/common';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+
+import { TodosStore } from './store/todos.store';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [JsonPipe, RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
-export class AppComponent {
-  title = 'ngrx-signal-store';
+export class AppComponent implements OnInit {
+  store = inject(TodosStore);
+
+  ngOnInit(): void {
+    this.loadTodos();
+  }
+
+  async loadTodos() {
+    await this.store.loadAll();
+  }
 }
