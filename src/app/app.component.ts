@@ -1,13 +1,13 @@
-import { JsonPipe } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
+import { TodoListComponent } from './feature/todo-list/todo-list.component';
 import { TodosStore } from './store/todos.store';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [JsonPipe, RouterOutlet],
+  imports: [RouterOutlet, TodoListComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
