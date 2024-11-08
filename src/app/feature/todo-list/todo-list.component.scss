@@ -1,0 +1,5 @@
+.todo-item {
+  @apply flex justify-between gap-3 py-0.5 px-3;
+  @apply rounded hover:bg-slate-200;
+  @apply transition-all;
+}
