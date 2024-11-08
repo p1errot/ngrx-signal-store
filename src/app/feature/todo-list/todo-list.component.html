@@ -12,21 +12,42 @@
 
   <div class="flex gap-3 pb-5">
     <div class="flex gap-1 cursor-pointer">
-      <input type="radio" name="filter" id="all" value="all" />
+      <input
+        type="radio"
+        name="filter"
+        id="all"
+        value="all"
+        [checked]="filter() === 'all'"
+        (change)="store.updateFilter('all')"
+      />
       <label class="cursor-pointer" for="all">All</label>
     </div>
     <div class="flex gap-1 cursor-pointer">
-      <input type="radio" name="filter" id="pending" value="pending" />
+      <input
+        type="radio"
+        name="filter"
+        id="pending"
+        value="pending"
+        [checked]="filter() === 'pending'"
+        (change)="store.updateFilter('pending')"
+      />
       <label class="cursor-pointer" for="pending">Pending</label>
     </div>
     <div class="flex gap-1 cursor-pointer">
-      <input type="radio" name="filter" id="completed" value="completed" />
+      <input
+        type="radio"
+        name="filter"
+        id="completed"
+        value="completed"
+        [checked]="filter() === 'completed'"
+        (change)="store.updateFilter('completed')"
+      />
       <label class="cursor-pointer" for="completed">Completed</label>
     </div>
   </div>
 
   <ul>
-    @for (todo of store.todos(); track todo.id; let index = $index) {
+    @for (todo of store.filteredTodos(); track todo.id; let index = $index) {
     <li class="todo-item">
       <input type="checkbox" id="{{ todo.id }}" [(ngModel)]="todo.completed" />
       <label

@@ -1,8 +1,7 @@
-import { Component, inject, model } from '@angular/core';
+import { Component, effect, inject, model } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { TodosStore } from '../../store/todos.store';
-import { TodosService } from './../../services/todos.service';
 
 @Component({
   selector: 'str-todo-list',
@@ -13,8 +12,17 @@ import { TodosService } from './../../services/todos.service';
 })
 export class TodoListComponent {
   store = inject(TodosStore);
-  todosService = inject(TodosService);
   newTodo = model('');
+  filter = model('');
+
+  constructor() {
+    effect(
+      () => {
+        this.filter.set(this.store.filter());
+      },
+      { allowSignalWrites: true }
+    );
+  }
 
   async addTodo(event: SubmitEvent) {
     event.preventDefault();
